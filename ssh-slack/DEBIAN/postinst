@@ -1,0 +1,5 @@
+#!/bin/bash
+echo 'Configure SSH SERVER by executing the following line:'
+echo '	echo '"'"'ForceCommand /usr/bin/ssh-slack'"'"' >> /etc/ssh/sshd_config'
+echo 'You also need to configure the SLACK_URI, SLACK_USERNAME, SLACK_ICON, SLACK_MSG_CONNECT and SLACK_MSG_DISCONNECT in the /etc/ssh-slack.conf file.'
+exit 0

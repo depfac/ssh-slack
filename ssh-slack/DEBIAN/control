@@ -1,0 +1,7 @@
+Package:ssh-slack
+Version:1.0.3.0
+Maintainer:Deployments Factory <helpdesk@depfac.com>
+Architecture:all
+Section:net
+Description:ssh-slack.
+Depends:openssh-server, curl

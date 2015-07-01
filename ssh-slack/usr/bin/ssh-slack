@@ -1,0 +1,23 @@
+#! /bin/bash
+
+# Inspired by http://www.ryanbrink.com/slack-ssh-session-notifications/
+
+# Find the session's remote IP address
+ip=`echo $SSH_CONNECTION | cut -d " " -f 1`
+
+source /etc/ssh-slack.conf
+
+# Tell Slack we logged in!
+curl -XPOST $SLACK_URI -d '
+{"text":"'"$SLACK_MSG_CONNECT"'",
+ "username":"'"$SLACK_USERNAME"'",
+ "icon_url":"'"$SLACK_ICON"'"}' > /dev/null 2>&1
+
+# Allow the session to run:
+${SSH_ORIGINAL_COMMAND:-bash}
+
+# Tell Slack we're logging out!
+curl -XPOST $SLACK_URI -d '
+{"text":"'"$SLACK_MSG_DISCONNECT"'",
+ "username":"'"$SLACK_USERNAME"'",
+ "icon_url":"'"$SLACK_ICON"'"}' > /dev/null 2>&1
